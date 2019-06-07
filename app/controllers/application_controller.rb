@@ -1,4 +1,7 @@
 class ApplicationController < ActionController::Base
+
+  helper_method :auth_token
+
   def login(user)
     session[:session_token] = user.reset_session_token!
   end
@@ -18,6 +21,15 @@ class ApplicationController < ActionController::Base
 
   def current_user
     @current_user ||= User.find_by(session_token: session[:session_token])
+  end
+
+  def auth_token
+    html = " <input "
+    html += " type=\"hidden\" "
+    html += " name=\"authenticity_token\" "
+    html += " value='<%= #{form_authenticity_token} %>' /> "
+    html.html_safe
+
   end
 
 end
