@@ -6,13 +6,18 @@ feature 'the signup process' do
 
   feature 'signing up a user' do
 
-    scenario 'shows username on the homepage after signup'
+    scenario 'shows username on the homepage after signup' do
+      visit new_user_url
+      expect(page).to have_content 'Welcome'
+    end
 
   end
 end
 
 feature 'logging in' do
-  scenario 'shows username on the homepage after login'
+  scenario 'shows username on the homepage after login' do
+    
+  end
 
 end
 
